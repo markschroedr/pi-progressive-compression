@@ -1,0 +1,34 @@
+{
+  "name": "pi-continuous-context",
+  "version": "0.1.0",
+  "description": "Branch-aware continuous session context for Pi (provisional name)",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "pi-package"
+  ],
+  "bin": {
+    "pi-continuous-context": "scripts/pi.mjs"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "patches",
+    "INSTALL.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES"
+  ],
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
+}

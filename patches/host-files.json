@@ -1,0 +1,26 @@
+{
+  "dist/core/agent-session.js": {
+    "original": "436e8be3bbab2db475ce30bb5d0bb30f0046b19a3476f8cd57b8133e68891162",
+    "patched": "0cc88f968f4cc9acd2a05c8c48a3cb315893363286312512fa654874dcce1d40"
+  },
+  "dist/core/compaction/compaction.d.ts": {
+    "original": "442c882b64a6ac23d3386865b7cfa3a5ac475a64333242f3068d4bc462c2e1c1",
+    "patched": "62b8fc2a0ea32aa1eeddbdb2e7961032159bac7ec950b97a135fafcbb8799ed8"
+  },
+  "dist/core/extensions/runner.js": {
+    "original": "0e659fb4338069d91c4d0a3b032b51bf8d179a99e6417bc3e39e59b672aaec76",
+    "patched": "6cbc8cb1e4448a7cacda345a40c1f49e8436238ee3a9028e07cc09b0edae71db"
+  },
+  "dist/core/extensions/types.d.ts": {
+    "original": "c5038d9410cfb13f5be391f46f13de338bc46ab4c9a7d064f7b962c0dc4a807c",
+    "patched": "59107bb5944ae2276e0b30869a87ce88e357d418290503fdce3d7dff2845be37"
+  },
+  "dist/core/session-manager.d.ts": {
+    "original": "2288b69c82272311dc877da61ff2057bb04df49038ddef7eef6c8753c09f5313",
+    "patched": "ac66e7761e94340aef170e6efddd9473a6f156a30a999f8e82ed8a31b427b3a8"
+  },
+  "dist/core/session-manager.js": {
+    "original": "046b6a1109ac3f0ed893bb85bf0648709362fa926a5da75761216cf2fcf9d926",
+    "patched": "11de5e952f0ea87ae7f72912e59fa4236fdc628a07eebf2d8f36f279ca269724"
+  }
+}
