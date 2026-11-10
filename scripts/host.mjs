@@ -1,13 +1,12 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 export const hashes = JSON.parse(readFileSync(new URL("../patches/host-files.json", import.meta.url), "utf8"));
 export function hostRoot(explicit = process.env.PI_PROGRESSIVE_COMPRESSION_HOST) {
-  return explicit ? resolve(explicit) : dirname(dirname(createRequire(import.meta.url).resolve("@earendil-works/pi-coding-agent")));
+  return explicit ? resolve(explicit) : resolve(packageRoot, ".host/node_modules/@earendil-works/pi-coding-agent");
 }
 export function checkHost(root, variant = "patched") {
   const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8"));

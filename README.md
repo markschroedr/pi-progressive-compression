@@ -8,7 +8,7 @@ Older exchanges become short history lines. Recent conversation and tool evidenc
 
 <p align="center"><img src="assets/context-timeline.svg" alt="Older conversation becomes numbered history lines, followed by recent conversation and tool evidence. The agent can retrieve originals from the session archive." width="760"></p>
 
-**Experimental v1. Requires the included patch for Pi 1.4.0.** This is not yet a drop-in extension for an ordinary Pi installation.
+Setup installs an isolated Pi host with the required patch. Your existing Pi installation stays untouched.
 
 ## How it works
 
@@ -24,9 +24,16 @@ The session JSONL contains the original messages, summary tree, earlier line ver
 
 ## Try it locally
 
-Use an isolated Pi installation first. You need Node.js 22.19 or newer and the system `patch` command.
+You need Node.js 22.19 or newer, [Bun](https://bun.sh), and the system `patch` command.
 
-Follow [installation instructions](INSTALL.md#isolated-local-installation) to install Pi 1.4.0, apply the checked host patch and start the supplied launcher. Authenticate with Pi as usual. Background writing uses the current model by default and can incur provider charges.
+```sh
+git clone https://github.com/markschroedr/pi-progressive-compression.git
+cd pi-progressive-compression
+bun run setup
+bun start
+```
+
+Setup handles the Pi version and patch automatically. The launcher uses your normal Pi login, settings, extensions and sessions. No environment variables or changes to your installed Pi executable are needed. Background writing uses the current model by default. See [installation details](INSTALL.md) for advanced usage and session storage.
 
 Inside the session:
 
@@ -63,14 +70,15 @@ These are estimated token budgets, not exact tokenizer limits. The system prompt
 
 ## Why a host patch?
 
-Two operations need host support that clean Pi 1.4.0 does not expose:
+Pi 1.4.0 exposes safe turn-boundary compaction, but writes retained-message edits separately from the checkpoint. It also does not reliably carry earlier edits across later checkpoints. Saving those operations separately could leave a session half-updated after an interruption.
 
-- Check the conversation threshold before the next model response.
-- Commit retained-message edits together with the compaction checkpoint, then replay them consistently after reopening.
-
-Saving edits separately from compaction could leave a session half-updated after an interruption. The included six-file patch keeps those changes atomic. It also guards against concurrent runs during compaction.
+The included six-file patch commits edits with the checkpoint and replays them after reopening. It also supplies the pre-response threshold hook and concurrent-run guard used by this implementation.
 
 The launcher checks the patched files and runs Pi's unbundled entrypoint. The ordinary `pi` command runs a separate bundle and does **not** pick up those patched files. Other Pi versions and compiled binaries are unsupported in this release. No automatic patching of your existing installation occurs.
+
+## Mechanism inspiration
+
+This project grew out of my earlier Progressive Compression memory system and [UniiChat by Victor Taelin](https://github.com/VictorTaelin/UniiChat). UniiChat's neighbouring summary lines, recursive memory tree, background summarization and zoom back to originals helped shape the mechanism here. This implementation adapts those ideas to Pi sessions, with importance-based merging and reconciliation of superseded decisions.
 
 ## License
 

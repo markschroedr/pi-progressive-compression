@@ -1,7 +1,7 @@
 # Install and compatibility reference
 
 - Package name: `pi-progressive-compression`, version `0.1.0`.
-- Runtime: Node.js 22.19 or newer; Pi coding-agent **1.4.0**; system `patch` command for patch application.
+- Runtime: Node.js 22.19 or newer, Bun, and the system `patch` command. Setup installs Pi **1.4.0** automatically.
 - Pi 1.4.0 needs the included MIT host patch. Unpatched Pi does not provide equivalent atomic compaction behavior.
 - Native projection and standalone context-edit APIs remain upstream APIs; this package does not replace them.
 - Patch scope: safe-boundary threshold event, atomic checkpoint edits, replay, capability declarations, concurrent-run guard.
@@ -9,23 +9,22 @@
 
 ## Isolated local installation
 
-- Keep this repository beside a new `pi-context-host` directory.
-- Run from their common parent:
-
 ```sh
-mkdir pi-context-host
-cd pi-context-host
-npm install --ignore-scripts --no-audit --no-fund @earendil-works/pi-coding-agent@1.4.0
-PACKAGE=../pi-progressive-compression
-HOST=node_modules/@earendil-works/pi-coding-agent
-node "$PACKAGE/scripts/apply-host-patch.mjs" "$HOST"
-export PI_PROGRESSIVE_COMPRESSION_HOST="$PWD/$HOST"
-export PI_CODING_AGENT_DIR="$PWD/agent"
-node "$PACKAGE/scripts/pi.mjs" --check-host
-node "$PACKAGE/scripts/pi.mjs"
+git clone https://github.com/markschroedr/pi-progressive-compression.git
+cd pi-progressive-compression
+bun run setup
+bun start
 ```
 
-- Set `PACKAGE` to the actual local package directory when it differs.
+- Setup installs and patches a private host inside this checkout's ignored `.host/` directory.
+- Bun copies dependency files rather than hardlinking them; patching cannot modify its shared cache.
+- Setup disables dependency lifecycle scripts and leaves the existing Pi installation untouched.
+- Running setup again reuses a verified patched host.
+- The launcher uses your normal Pi profile: existing credentials, settings, extensions and sessions.
+- No environment variables are needed. Advanced users can override `PI_PROGRESSIVE_COMPRESSION_HOST` and `PI_CODING_AGENT_DIR`.
+- Pass normal Pi options with `bun start -- --help`, or run `node scripts/pi.mjs` from any working directory.
+- For an optional test profile, run `PI_CODING_AGENT_DIR=/path/to/test-profile bun start`. No credentials are copied.
+- Session data stays in the selected Pi profile, outside `.host/` by default.
 - Review the patch before application. The application script checks every original file hash before writing.
 - Repeated application is a no-op when every patched file hash matches.
 - Reinstalling/updating Pi removes the patch. Reapply only to the exact supported version.
@@ -42,7 +41,6 @@ node "$PACKAGE/scripts/pi.mjs"
 - `writer: "current"` selects the session model at call time. No model-tier routing occurs.
 - Set `writer` to `provider/model` for a different registered chat model.
 - The writer must return JSON using the existing prompts. Invalid output gets bounded retries, not a private fallback.
-- Private Claude bridge integration is unsupported in v1, including its isolated-summary event protocol.
 - Native registered Anthropic streaming works through the ordinary provider path; no bridge is required.
 - Writer calls can incur provider charges. Background preparation starts automatically in continuous mode.
 - Token budgets use Pi character estimates, adjusted by available assistant input-usage receipts; they are not tokenizer guarantees.

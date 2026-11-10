@@ -13,6 +13,6 @@ try {
     await import(pathToFileURL(resolve(root, "dist/cli.js")).href);
   }
 } catch (error) {
-  console.error(error.message);
+  console.error(`${error.message}\nRun bun run setup from the package directory first.`);
   process.exitCode = 1;
 }

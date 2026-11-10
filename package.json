@@ -7,6 +7,10 @@
   "keywords": [
     "pi-package"
   ],
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "start": "node scripts/pi.mjs"
+  },
   "bin": {
     "pi-progressive-compression": "scripts/pi.mjs"
   },
