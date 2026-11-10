@@ -1,6 +1,6 @@
 # Install and compatibility reference
 
-- Provisional package name: `pi-continuous-context`, version `0.1.0`.
+- Package name: `pi-progressive-compression`, version `0.1.0`.
 - Runtime: Node.js 22.19 or newer; Pi coding-agent **1.4.0**; system `patch` command for patch application.
 - Pi 1.4.0 needs the included MIT host patch. Unpatched Pi does not provide equivalent atomic compaction behavior.
 - Native projection and standalone context-edit APIs remain upstream APIs; this package does not replace them.
@@ -16,10 +16,10 @@
 mkdir pi-context-host
 cd pi-context-host
 npm install --ignore-scripts --no-audit --no-fund @earendil-works/pi-coding-agent@1.4.0
-PACKAGE=../pi-continuous-context
+PACKAGE=../pi-progressive-compression
 HOST=node_modules/@earendil-works/pi-coding-agent
 node "$PACKAGE/scripts/apply-host-patch.mjs" "$HOST"
-export PI_CONTINUOUS_CONTEXT_HOST="$PWD/$HOST"
+export PI_PROGRESSIVE_COMPRESSION_HOST="$PWD/$HOST"
 export PI_CODING_AGENT_DIR="$PWD/agent"
 node "$PACKAGE/scripts/pi.mjs" --check-host
 node "$PACKAGE/scripts/pi.mjs"

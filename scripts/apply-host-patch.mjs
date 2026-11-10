@@ -19,7 +19,7 @@ try {
     if (result.status !== 0) throw new Error(result.stdout + result.stderr);
   }
   checkHost(root);
-  console.log("Applied minimal Pi 1.4.0 host patch; use pi-continuous-context, not the upstream bundled pi executable");
+  console.log("Applied minimal Pi 1.4.0 host patch; use pi-progressive-compression, not the upstream bundled pi executable");
 } catch (error) {
   console.error(error.message);
   process.exitCode = 1;

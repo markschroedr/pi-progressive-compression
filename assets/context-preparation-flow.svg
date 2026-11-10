@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" width="760" height="350" fill="none" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="title desc">
+  <title id="title">Context preparation, reconciliation and adoption</title>
+  <desc id="desc">Three stages. Background preparation writes one short line per older exchange or chunk. Periodic reconciliation supersedes lines and merges least-important neighbours. Adoption applies the summary, with recent conversation and tool evidence after it. The original archive keeps every exchange.</desc>
+  <style>
+    :root { --g: #57606a; --a: #a35d0b; --txt: #4b535c; }
+    @media (prefers-color-scheme: dark) { :root { --g: #8b949e; --a: #d39b52; --txt: #8b949e; } }
+    .g { stroke: var(--g); }
+    .a { stroke: var(--a); }
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--txt); }
+    .t { font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+    .s { font-size: 12px; }
+  </style>
+
+  <!-- stage 1: background preparation -->
+  <rect class="g" x="40" y="36" width="190" height="204" rx="10" stroke-width="1.4" opacity=".5"/>
+  <text class="t" x="54" y="62">1  Prepare</text>
+  <text class="s" x="54" y="80">background, after turns</text>
+  <text class="s" x="54" y="96">older history only</text>
+  <g stroke-width="1.2" opacity=".6">
+    <rect class="g" x="54" y="112" width="56" height="12" rx="2"/>
+    <rect class="g" x="54" y="130" width="56" height="12" rx="2"/>
+    <rect class="g" x="54" y="148" width="56" height="12" rx="2"/>
+  </g>
+  <path class="g" d="M114 136 H140" stroke-width="1.6" stroke-dasharray="1 5"/>
+  <path class="g" d="M136 131 L141 136 L136 141" stroke-width="1.6"/>
+  <g stroke-width="3">
+    <line class="g" x1="148" y1="118" x2="216" y2="118"/>
+    <line class="a" x1="148" y1="136" x2="216" y2="136"/>
+    <line class="g" x1="148" y1="154" x2="216" y2="154"/>
+  </g>
+  <text class="s" x="54" y="218">one line per exchange</text>
+  <text class="s" x="54" y="232">or chunk; originals kept</text>
+
+  <!-- stage 2: reconciliation and merges -->
+  <rect class="g" x="285" y="36" width="190" height="204" rx="10" stroke-width="1.4" opacity=".5"/>
+  <text class="t" x="299" y="62">2  Reconcile</text>
+  <text class="s" x="299" y="80">periodic refresh</text>
+  <text class="s" x="299" y="96">later turns supersede</text>
+  <line class="g" x1="299" y1="118" x2="379" y2="118" stroke-width="3" stroke-dasharray="3 4" opacity=".4"/>
+  <g stroke-width="3">
+    <line class="g" x1="299" y1="134" x2="379" y2="134"/>
+    <line class="g" x1="299" y1="150" x2="359" y2="150"/>
+  </g>
+  <path class="a" d="M384 130 H390 V154 H384" stroke-width="1.8"/>
+  <path class="a" d="M396 142 H410 M405 137 L411 142 L405 147" stroke-width="1.8"/>
+  <rect class="a" x="414" y="130" width="54" height="24" rx="5" stroke-width="1.8"/>
+  <line class="a" x1="422" y1="142" x2="460" y2="142" stroke-width="2.6"/>
+  <text class="s" x="299" y="218">lines superseded or merged</text>
+  <text class="s" x="299" y="232">least-important first</text>
+
+  <!-- stage 3: adoption -->
+  <rect class="g" x="530" y="36" width="190" height="204" rx="10" stroke-width="1.4" opacity=".5"/>
+  <text class="t" x="544" y="62">3  Adopt</text>
+  <text class="s" x="544" y="80">at compaction</text>
+  <text class="s" x="544" y="96">raw tail follows</text>
+  <rect class="a" x="544" y="110" width="162" height="60" rx="6" stroke-width="1.8"/>
+  <g stroke-width="2.6" opacity=".7">
+    <line class="g" x1="556" y1="122" x2="690" y2="122"/>
+    <line class="g" x1="556" y1="136" x2="664" y2="136"/>
+    <line class="g" x1="556" y1="150" x2="680" y2="150"/>
+    <line class="g" x1="556" y1="162" x2="648" y2="162"/>
+  </g>
+  <rect class="g" x="544" y="180" width="162" height="22" rx="6" stroke-width="1.4"/>
+  <line class="g" x1="556" y1="191" x2="690" y2="191" stroke-width="2.6" opacity=".7"/>
+  <text class="s" x="544" y="218">summary, then recent</text>
+  <text class="s" x="544" y="232">conversation + tool evidence</text>
+
+  <!-- flow arrows -->
+  <path class="g" d="M238 140 H282" stroke-width="1.6"/>
+  <path class="g" d="M276 135 L283 140 L276 145" stroke-width="1.6"/>
+  <path class="g" d="M483 140 H527" stroke-width="1.6"/>
+  <path class="g" d="M521 135 L528 140 L521 145" stroke-width="1.6"/>
+
+  <!-- original archive -->
+  <g stroke-width="1.4" stroke-dasharray="1 5">
+    <path class="g" d="M135 240 V262"/>
+    <path class="g" d="M380 240 V262"/>
+    <path class="g" d="M625 240 V262"/>
+  </g>
+  <g stroke-width="1.6">
+    <path class="g" d="M131 256 L135 263 L139 256"/>
+    <path class="g" d="M376 256 L380 263 L384 256"/>
+    <path class="g" d="M621 256 L625 263 L629 256"/>
+  </g>
+  <rect class="g" x="40" y="266" width="680" height="38" rx="8" stroke-width="1.4" stroke-dasharray="4 5" opacity=".8"/>
+  <text class="t" x="58" y="290">Original archive</text>
+  <text class="s" x="196" y="290">exchanges and line versions kept; context_zoom reads them</text>
+
+  <!-- footer -->
+  <text class="t" x="40" y="332">Summaries are lossy. Originals are recoverable from the archive.</text>
+</svg>

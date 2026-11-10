@@ -1,16 +1,17 @@
 {
-  "name": "pi-continuous-context",
+  "name": "pi-progressive-compression",
   "version": "0.1.0",
-  "description": "Branch-aware continuous session context for Pi (provisional name)",
+  "description": "Continuous context for Pi with progressive compression and recoverable originals",
   "type": "module",
   "license": "MIT",
   "keywords": [
     "pi-package"
   ],
   "bin": {
-    "pi-continuous-context": "scripts/pi.mjs"
+    "pi-progressive-compression": "scripts/pi.mjs"
   },
   "files": [
+    "assets",
     "src",
     "scripts",
     "patches",
