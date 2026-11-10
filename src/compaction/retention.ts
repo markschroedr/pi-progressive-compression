@@ -112,15 +112,15 @@ function working(items: Item[]): Item[] {
 	});
 }
 
-/** Aborted responses can persist calls that never ran and therefore have no result.
+/** Failed or aborted responses can persist calls that never ran and therefore have no result.
  * Remove only those calls from the context view; never invent execution results.
- * Completed calls and unfinished non-aborted responses keep their strict pairing.
+ * Completed calls and unfinished non-terminal responses keep their strict pairing.
  */
-function withoutAbortedCalls(items: Item[]): Item[] {
+function withoutUnexecutedCalls(items: Item[]): Item[] {
 	const results = new Set(items.flatMap(item => item.message.role === "toolResult" ? [item.message.toolCallId] : []));
 	return items.flatMap(item => {
 		const message = item.message;
-		if (message.role !== "assistant" || message.stopReason !== "aborted") return [item];
+		if (message.role !== "assistant" || (message.stopReason !== "aborted" && message.stopReason !== "error")) return [item];
 		const content = message.content.filter(block => block.type !== "toolCall" || results.has(block.id));
 		if (content.length === message.content.length) return [item];
 		return content.length ? [replace(item, content)] : [];
@@ -156,7 +156,7 @@ export function planRetention(entries: SessionEntry[], budget = 20000, options?:
 	const projection = buildSessionProjection(entries);
 	const originals: Item[] = projection.entries.flatMap(entry => entry.sourceEntry.type === "compaction" ? []
 		: entry.messages.filter(message => message.role !== "system").map(message => ({ id: entry.sourceEntry.id, message })));
-	const all = withoutAbortedCalls(originals);
+	const all = withoutUnexecutedCalls(originals);
 	if (!all.length || budget <= 0) throw new Error("No retention budget or conversation available");
 	const recentBudget = Math.floor(budget * 0.4);
 	const lastUser = all.findLastIndex(item => item.message.role === "user");

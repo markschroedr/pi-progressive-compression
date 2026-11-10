@@ -21,6 +21,6 @@
   },
   "dist/core/session-manager.js": {
     "original": "046b6a1109ac3f0ed893bb85bf0648709362fa926a5da75761216cf2fcf9d926",
-    "patched": "11de5e952f0ea87ae7f72912e59fa4236fdc628a07eebf2d8f36f279ca269724"
+    "patched": "f051ad95d09ea9f945496d24cd15ab6fa78ba92545246e88c5b56e95e9733bd0"
   }
 }
